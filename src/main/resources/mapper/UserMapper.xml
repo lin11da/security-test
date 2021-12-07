@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.mybatis.User">
+        <select id="selectLoginUserbyuserid" parameterType="com.example.pojp.entity.UserO"
+                resultType="com.example.pojp.security.UserDTO">
+                SELECT  u.userid,u.password,u.salt,u.isAccountNonExpired,
+                       u.isAccountNonLocked,u.isCredentialsNonExpired,u.isEnabled,
+                       r.user_role,GROUP_CONCAT(p.user_permissions SEPARATOR ',') user_permissions
+                FROM `user` u
+                    left join
+                    user_role r
+                        ON
+                            u.userid = r.userid
+                    left join
+                    user_permissions p
+                        on
+                            u.userid = p.userid
+                where u.udelete = '0'
+                  and
+                      u.number = #{number}
+        </select>
+</mapper>

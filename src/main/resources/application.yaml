@@ -1,0 +1,15 @@
+# ${SPRING_PROFILES_ACTIVE} 的意思是读取名为 SPRING_PROFILES_ACTIVE 的环境变量
+profiles:
+  active: ${SPRING_PROFILES_ACTIVE}
+
+
+mybatis:
+  type-aliases-package: com.example.pojo
+  mapper-locations: classpath:mapper/*.xml
+
+# token配置
+token:
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认30分钟）
+  expireTime: 30
